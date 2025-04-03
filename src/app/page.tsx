@@ -19,8 +19,8 @@ export default function Home() {
       {!showHeader &&
         <Logo />
       }
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pb-20 gap-16">
-      <main className="flex flex-col gap-8 row-start-2 items-center">
+    <div className="grid items-center justify-items-center pb-20 md:gap-16">
+      <main className="flex flex-col gap-8 items-center">
       {showHeader ? 
         <Header /> : <About />
       }

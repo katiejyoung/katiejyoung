@@ -3,13 +3,13 @@ import Image from "next/image";
 const About = () => {
   return (
     <div>
-        <div className="flex justify-center gap-32 px-30">
-            <div className="">
+        <div className="flex justify-center md:gap-32 md:px-30 pb-20 md:pt-20 md:pb-0">
+            <div className="invisible md:visible">
                 <Image src="/katie-young-FSE.JPG" 
                     alt="Katie Young, Ful-Stack Engineer" width={1000} height={1000} 
                     className="rounded-xl" />
             </div>
-            <div className="px-10 text-lg">
+            <div className="px-5 md:px-10 md:text-lg">
                 <div className="pb-5">I&apos;m a full-stack engineer who genuinely enjoys taking on significant challenges. 
                     Whether it&apos;s architecting a complex web application with modern tools 
                     like Next.js, React, and TypeScript, or the hands-on experience of building a tiny house, 
