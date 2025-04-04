@@ -15,7 +15,7 @@ const About = () => {
           </div>
         <div className="px-5 md:px-10 md:text-lg">
           <div className="pb-5">
-            I&apos;m a full-stack engineer who genuinely enjoys taking on significant
+            I&apos;m a full-stack engineer who genuinely enjoys taking on
             challenges. Whether it&apos;s architecting a complex web application
             with modern tools like Next.js, React, and TypeScript, or the
             hands-on experience of building a tiny house, I&apos;m driven by the

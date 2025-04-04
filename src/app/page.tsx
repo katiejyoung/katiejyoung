@@ -4,7 +4,7 @@ import { HiOutlineStar } from 'react-icons/hi';
 import { HiSun } from 'react-icons/hi';
 import Header from './components/header';
 import About from './components/about';
-import Logo from './components/logo';
+// import Logo from './components/logo';
 import { useState } from 'react';
 
 export default function Home() {
