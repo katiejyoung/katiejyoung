@@ -1,0 +1,63 @@
+:root {
+    --ink: #24281f;
+    --paper: #fafaf7;
+    --sage: #71876e;
+    --sage-deep: #54694f;
+    --accent: #4c6b4c;
+    --muted: #77796f;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+  
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:hover { color: var(--sage-deep); }
+  
+  .hero { display: flex; gap: 1.75rem; align-items: center; flex-wrap: wrap; margin-bottom: 3rem; }
+  .hero img { border-radius: 50%; border: 3px solid var(--sage); object-fit: cover; }
+  
+  h1 { font-size: 2.25rem; letter-spacing: -0.02em; }
+  .tagline { color: var(--muted); font-size: 1.1rem; margin-top: 0.35rem; }
+  
+  .links { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 1rem; font-family: ui-sans-serif, system-ui, sans-serif; }
+  .links a { text-decoration: none; font-weight: 600; }
+  .pill { background: var(--sage-deep); color: #fff; padding: 0.3rem 0.9rem; border-radius: 999px; }
+  .pill:hover { background: var(--ink); color: #fff; }
+  
+  .section { margin-bottom: 3rem; }
+  .kicker { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; color: var(--sage-deep); font-family: ui-sans-serif, system-ui, sans-serif; }
+  .section h2 { font-size: 1.6rem; margin: 0.25rem 0 0.9rem; }
+  .section p + p, .section ul { margin-top: 0.85rem; }
+  .aside { color: var(--muted); font-style: italic; font-size: 0.92rem; }
+  em { color: var(--sage-deep); }
+  
+  .timeline { list-style: none; }
+  .timeline-item { display: grid; grid-template-columns: 8.5rem 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid #e5e0d8; }
+  .timeline-period { font-family: ui-monospace, monospace; font-size: 0.8rem; color: var(--muted); padding-top: 0.45rem; }
+  .org { color: var(--muted); font-weight: 400; font-size: 0.95rem; }
+  .timeline-item h3 { font-size: 1.05rem; margin-bottom: 0.3rem; }
+  
+  details { margin-top: 1rem; }
+  summary { cursor: pointer; color: var(--muted); font-size: 0.9rem; }
+  details[open] p { margin-top: 0.5rem; }
+  
+  footer { border-top: 1px solid #e5e0d8; padding-top: 1.25rem; color: var(--muted); font-size: 0.85rem; }
+  
+  @media (max-width: 480px) {
+    .timeline-item { grid-template-columns: 1fr; }
+    .timeline-period { padding: 0; }
+  }
+
+  .action-button {
+    display: inline-block;
+    margin-top: 1rem;
+  }
