@@ -55,7 +55,7 @@ export default function App() {
       </header>
 
       <main>
-        <Section id="about" kicker="Hello there" title="Engineer, writer, carpenter">
+        <Section id="about" kicker="Hello there" title="TL;DR">
           <p>
             I've spent five years building production web applications — most recently shipping
             TypeScript, React, and Next.js features at Storyblocks. I'm the teammate people go to for support, the one who volunteers for the
@@ -163,7 +163,7 @@ export default function App() {
           <p className="subheading">Human languages</p>
           <p className="aside">
             English (native), Spanish (~B1, weekly tutoring with a native Spanish speaker), Modern
-            Standard Arabic (~A2, Georgetown minor), Egyptian Arabic (just started & currently
+            Standard Arabic (~A2, Georgetown minor), Egyptian Arabic (just started tutoring & currently
             accepting recommendations for Egyptian films).
           </p>
         </Section>
