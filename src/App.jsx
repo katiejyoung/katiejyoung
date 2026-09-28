@@ -64,8 +64,7 @@ export default function App() {
             LinkedIn recommendations</a>) someone people genuinely enjoy working with.
           </p>
           <p>
-            Off the clock, I'm converting a trailer into a traveling woodshop, dabbling in
-            conversational Arabic and Spanish, and designing <a href="#tangible">my first independent app</a>.
+            Off the clock, I'm converting a trailer into a traveling woodshop, plotting my next international trip, and designing <a href="#tangible">my first independent app</a>.
           </p>
         </Section>
 
@@ -161,12 +160,19 @@ export default function App() {
             TypeScript · JavaScript · React · Redux · Next.js · Tailwind · HTML/CSS · SQL · PHP ·
             Java · C/C++ · Python · Docker · Git/Bash · Jira · Figma · GitHub Copilot · Agile
           </p>
-          <p className="aside">Human languages: English (native), Spanish (~B1), Modern Standard Arabic (~A2), Egyptian Arabic (just started - currently accepting recommendations for Egyptian films).</p>
+          <p className="subheading">Human languages</p>
+          <p className="aside">
+            English (native), Spanish (~B1, weekly tutoring with a native Spanish speaker), Modern
+            Standard Arabic (~A2, Georgetown minor), Egyptian Arabic (just started & currently
+            accepting recommendations for Egyptian films).
+          </p>
         </Section>
 
         <Section id="contact" kicker="Say hello" title="Let's talk">
         <p>
-          I'm open to full-stack roles and interesting contracts. Reach out on{" "}
+          I'm open to full-stack roles and interesting contracts — especially with
+          international or distributed teams. I've worked fully remote for years and
+          thrive across time zones. Reach out on{" "}
           <a href={LINKS.linkedin}>LinkedIn</a> — that's where I'm fastest to respond —
           or see what I'm building on <a href={LINKS.github}>GitHub</a>.
         </p>
