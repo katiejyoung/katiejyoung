@@ -1,10 +1,10 @@
-import React from "react";
 import profilePhoto from "./assets/profile.jpg";
 
 const LINKS = {
   linkedin: "https://linkedin.com/in/katiejanelle/",
   github: "https://github.com/katiejyoung/",
   tangible: "https://github.com/katiejyoung/tangible-demo",
+  throneOfGlass: "https://sarahjmaas.com/throne-of-glass-series/",
 };
 
 function Section({ id, title, kicker, children }) {
@@ -117,7 +117,7 @@ export default function App() {
 
         <Section id="experience" kicker="Recent experience" title="Experience">
           <ol className="timeline">
-            <TimelineItem role="Full-Stack Software Engineer" org="Starfall Studio, LLC — Greensboro, NC" period="2025 — Now">
+            <TimelineItem role="Full-Stack Software Engineer" org="Starfall Studio, LLC — Asheville, NC" period="2025 — Now">
             <p>
               Developing an automated task-tracking platform: Next.js, Docker, Prisma,
               Tailwind, Clerk auth, plus an AI-powered feature and a Python IoT microservice.
@@ -166,6 +166,39 @@ export default function App() {
             Standard Arabic (~A2, Georgetown minor), Egyptian Arabic (just started tutoring & currently
             accepting recommendations for Egyptian films).
           </p>
+        </Section>
+
+        <Section id="hobbies" kicker="Off the clock" title="Hobbies">
+          <ul className="hobby-list">
+            <li>
+              <strong>Electronics</strong> — I love to wield the magic of technology as it connects to the physical world.
+            </li>
+            <li>
+              <strong>Soccer</strong> — The Washington Spirit is the best team in the NWSL. Convince me otherwise.
+            </li>
+            <li>
+              <strong>Backyard meteorology</strong> — Kansas born and raised, I'm weirdly fascinated by tornadoes. In the spring I religiously tune into storm chasers' live streams on YouTube.
+            </li>
+            <li>
+              <strong>Knife throwing</strong> —{" "}
+              <a href={LINKS.throneOfGlass}>
+                <em>Throne of Glass</em>
+              </a>{" "} 
+              introduced me to the sport, and I stayed for the thunk.
+            </li>
+            <li>
+              <strong>Percussion</strong> — A former drumline percussionist, I live for a good beat.
+            </li>
+            <li>
+              <strong>Travel</strong> — Next stop, the Middle East!
+            </li>
+            <li>
+              <strong>Carpentry</strong> — From timber framing to custom shelving, I'm fascinated by the versatility of lumber.
+            </li>
+            <li>
+              <strong>Nature</strong> — Most weekends, you'll find me hiking a new trail near my home in the mountains of western North Carolina.
+            </li>
+          </ul>
         </Section>
 
         <Section id="contact" kicker="Say hello" title="Let's talk">
