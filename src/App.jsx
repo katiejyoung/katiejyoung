@@ -92,12 +92,12 @@ export default function App() {
             </li>
             <li>
               <strong>College Coursework, Workshops & Tutoring</strong> — I took four college
-              classes and attended three workshops during this time, covering everything from
+              classes and attended three workshops, covering everything from
               home electric to automotive basics, along with drawing and CAD. I also started
               working with a Spanish tutor (more than 30 lessons in now!) and learned how to stay upright 
               on a skateboard. For the first time in my life, I aired a tire, repaired
               a melted wire, uninstalled and reinstalled a furnace, changed the oil in my car,
-              and learned how to troubleshoot unwanted appliance behavior.
+              and used a multimeter to troubleshoot unwanted appliance behavior.
             </li>
          </ul>
         </Section>
