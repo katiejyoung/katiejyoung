@@ -68,3 +68,256 @@
     font-size: 0.85rem;
     margin-top: 1.25rem;
   }
+
+/* ---------- Decorative foliage: end-of-storm eddies ---------- */
+
+.leaf-layer {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.vortex  { position: absolute; }
+.orbit   { position: absolute; }
+.spiral  { position: absolute; }
+.leaf    { display: block; }
+
+.leaf--sage   { color: var(--sage); }
+.leaf--deep   { color: var(--sage-deep); }
+.leaf--accent { color: var(--accent); }
+
+/* Each level of the nesting consumes the per-vortex custom properties */
+.orbit  { animation: orbit  var(--orbit-d, 24s) linear     infinite var(--delay, 0s); }
+.spiral { animation: spiral var(--orbit-d, 24s) ease-in-out infinite var(--delay, 0s); }
+.leaf   { animation: spin   var(--spin-d, 7s)   linear     infinite var(--delay, 0s),
+                      flutter 9s               ease-in-out infinite var(--delay, 0s); }
+
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(calc(var(--turn, 1) * 360deg)); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(calc(var(--turn, 1) * 360deg)); }
+}
+
+@keyframes spiral {
+  0%, 100% { transform: translateY(var(--r1, -58px)); }
+  50%      { transform: translateY(var(--r2, -95px)); }
+}
+
+@keyframes flutter {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.9; }
+}
+
+@media (max-width: 1024px) {
+  .leaf-layer { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit, .spiral, .leaf { animation: none !important; }
+  .leaf { opacity: 0.45; }
+}
+
+/* Dust haze — right side now, mirrored */
+.dust-devil-haze {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 30vw;
+  height: 58vh;
+  pointer-events: none;
+  background:
+    radial-gradient(13vw 11vh at 22vw 12vh,   rgba(119,121,111,.26), transparent 72%),
+    radial-gradient(9vw 9vh  at 20vw 22vh,    rgba(119,121,111,.22), transparent 72%),
+    radial-gradient(6.5vw 7vh at 19vw 31vh,   rgba(84,105,79,.20),   transparent 75%),
+    radial-gradient(4.5vw 6vh at 18.5vw 40vh, rgba(84,105,79,.18),   transparent 75%),
+    radial-gradient(3.5vw 5vh at 18vw 48vh,  rgba(84,105,79,.16),   transparent 78%);
+  animation: dust-drift 14s ease-in-out infinite;
+}
+
+@keyframes dust-drift {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-14px); }
+}
+
+@media (prefers-reduced-motion: reduce) { .dust-devil-haze { animation: none !important; } }
+
+/* Bug fix: twigs & samaras never self-spun — they do now */
+.twig, .samara {
+  display: block;
+  animation: spin var(--spin-d, 7s) linear infinite var(--delay, 0s),
+             flutter 9s ease-in-out infinite var(--delay, 0s);
+}
+
+/* Toast — pinned to the right edge, clear of the 44rem column */
+.cow-toast {
+  position: fixed;
+  right: 1.5rem;
+  top: 40vh;
+  max-width: min(230px, 22vw);
+  background: var(--paper);
+  color: var(--ink);
+  border: 1.5px solid var(--sage-deep);
+  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  box-shadow: 3px 3px 0 rgba(84, 105, 79, 0.25);
+  animation: toast-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 10;
+}
+
+.cow-toast::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 32px;
+  width: 14px;
+  height: 14px;
+  background: var(--paper);
+  border-left: 1.5px solid var(--sage-deep);
+  border-top: 1.5px solid var(--sage-deep);
+  transform: rotate(45deg);
+}
+
+@keyframes toast-pop {
+  from { opacity: 0; transform: scale(0.8) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.cow-stage {
+  position: fixed;
+  pointer-events: none; /* only the button itself is interactive */
+  z-index: 0;
+}
+
+.cow-button {
+  display: block;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  pointer-events: auto;
+  animation: spin var(--spin-d, 24s) linear infinite var(--delay, 0s);
+}
+
+.cow-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* The cow hides with the rest of the weather on small screens */
+@media (max-width: 1024px) {
+  .cow-stage, .env-toggle { display: none; }
+}
+
+/* Animation toggle — bottom-right, understated */
+/* Environment picker: production = pressed-leaf calm, local = the weather.
+   Styled like a deploy badge, because that is what it is. */
+   .env-toggle {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 20;
+    display: flex;
+    gap: 2px;
+    padding: 3px;
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    background: var(--paper);
+    border: 1px solid #e5e0d8;
+    border-radius: 999px;
+  }
+  
+  .env-option {
+    padding: 0.25rem 0.8rem;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .env-option:hover { color: var(--sage-deep); }
+  
+  .env-option.is-active,
+  .env-option.is-active:hover {
+    background: var(--sage-deep);
+    color: #fff;
+  }
+  
+  .env-option:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  
+  @media (max-width: 1024px) {
+    .env-toggle { display: none; }
+  }
+
+/* The kill switch — body.no-anim stops every decorative animation */
+body.no-anim .orbit,
+body.no-anim .spiral,
+body.no-anim .leaf,
+body.no-anim .twig,
+body.no-anim .samara,
+body.no-anim .cow-button,
+body.no-anim .dust-devil-haze { animation: none !important; }
+
+
+/* ---------- Static mode: pressed-botanical page dressing ---------- */
+
+.static-decor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* kill every inherited animation — leaves AND the samara carry spin/flutter */
+.static-decor .leaf,
+.static-decor .samara {
+  position: absolute;
+  opacity: 0.3;
+  animation: none;
+}
+
+.static-decor > *:nth-child(1) {
+  right: 3vw;
+  top: 10vh;
+  transform: rotate(28deg);
+}
+.static-decor > *:nth-child(2) {
+  right: 5vw;
+  bottom: 14vh;
+  transform: rotate(-18deg);
+}
+.static-decor > *:nth-child(3) {
+  right: 4vw;
+  top: 46vh;
+  transform: rotate(115deg);
+}
+.static-decor > *:nth-child(4) {
+  right: 6vw;
+  bottom: 34vh;
+  transform: rotate(-40deg);
+}
+.static-decor > *:nth-child(5) {
+  right: 2.5vw;
+  top: 68vh;
+  transform: rotate(60deg);
+}
+
+@media (max-width: 1024px) {
+  .static-decor { display: none; }
+}

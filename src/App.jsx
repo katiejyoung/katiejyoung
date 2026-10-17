@@ -1,4 +1,5 @@
 import profilePhoto from "./assets/profile.jpg";
+import LeafAccents from "./LeafAccents";
 
 const LINKS = {
   linkedin: "https://linkedin.com/in/katiejanelle/",
@@ -35,6 +36,7 @@ function TimelineItem({ period, role, org, children }) {
 export default function App() {
   return (
     <>
+      <LeafAccents />
       <header className="hero">
         <img
           src={profilePhoto}
