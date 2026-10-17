@@ -130,7 +130,7 @@ export default function App() {
             </TimelineItem>
             <TimelineItem role="Intentional Sabbatical" org="Independent — Richmond, VA" period="2024 — 2025">
               <p>
-                A deliberate year of personal projects, volunteering, and being human. I dreamed up and
+                A period of completing personal projects and volunteering. During this time, I dreamed up and
                 started Tangible (and later re-wrote it from scratch) and completed more than 800 tasks, which — naturally — I tracked 
                 with the system that inspired the app.
               </p>
