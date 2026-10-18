@@ -62,44 +62,12 @@ export default function App() {
         <Section id="about" kicker="Hello there" title="TL;DR">
           <p>
             I've spent five years building production web applications — most recently shipping
-            TypeScript, React, and Next.js features at Storyblocks. I'm the teammate people go to for support, the one who volunteers for opportunities 
-            to fine-tune my craft, and per my{" "}
+            TypeScript, React, and Next.js features at Storyblocks. I've also been
+            building my own product end to end. I'm the teammate people go to for support, the one who 
+            volunteers for opportunities to fine-tune my craft, and per my{" "}
             <a href="https://www.linkedin.com/in/katiejanelle/details/recommendations/">
-            LinkedIn recommendations</a> — someone people genuinely enjoy working with.
+            LinkedIn recommendations</a>, someone people genuinely enjoy working with.
           </p>
-        </Section>
-
-        <Section id="lately" kicker="Life lately" title="What I've been up to">
-          <p>
-            I've spent the past two years working on a long list of personal goals. Here are some accomplishments I'm especially proud of:
-          </p>
-          <ul>
-            <li>
-              <strong>Tangible</strong> — the app I wanted and couldn't find.{" "}
-              <a href="#tangible">Details below ↓</a>
-            </li>
-            <li>
-              <strong>Home infrastructure</strong> — I configured a Synology NAS running
-              Jellyfin and Synology Photos for family media sharing. I also digitized bins of family
-              photos, paperwork, and DVDs, migrated to more secure digital 
-              practices, and started dabbling in home automation.
-            </li>
-            <li>
-              <strong>Carpentry</strong> — I apprenticed with a natural builder, during which time 
-              our team framed the interior walls of a three-bedroom house, completed a tiny-house build from 
-              foundation to roofing, revitalized a previously condemned historic house, installed an earthen floor 
-              and built two decks. I also took on solo handywork clients for tasks ranging from painting to cabinet installation.
-            </li>
-            <li>
-              <strong>College Coursework, Workshops & Tutoring</strong> — I took four college
-              classes and attended three workshops, covering everything from
-              home electric to automotive basics, along with drawing and CAD. I also started
-              working with a Spanish tutor (more than 30 lessons in now!) and learned how to stay upright 
-              on a skateboard. For the first time in my life, I aired a tire, repaired
-              a melted wire, uninstalled and reinstalled a furnace, changed the oil in my car,
-              and used a multimeter to troubleshoot unwanted appliance behavior.
-            </li>
-         </ul>
         </Section>
 
         <Section id="tangible" kicker="My current obsession" title="Tangible">
@@ -122,17 +90,12 @@ export default function App() {
 
         <Section id="experience" kicker="Recent experience" title="Experience">
           <ol className="timeline">
-            <TimelineItem role="Founder | Full-Stack Software Engineer & Builder" org="Starfall Studio, LLC — Asheville, NC" period="2025 — Now">
+            <TimelineItem role="Founder | Full-Stack Software Engineer & Builder" org="Starfall Studio, LLC — Asheville, NC" period="2024 — Now">
               <p>
-                I formed a business entity to tackle projects of my own design. Tangible falls under this entity, as does a 
-                building-specific DBA, Starfall Residential Services.
-              </p>
-            </TimelineItem>
-            <TimelineItem role="Intentional Sabbatical" org="Independent — Richmond, VA" period="2024 — 2025">
-              <p>
-                A period of completing personal projects and volunteering. During this time, I dreamed up and
-                started Tangible (and later re-wrote it from scratch) and completed more than 800 tasks, which — naturally — I tracked 
-                with the system that inspired the app.
+                I formed a business entity to tackle projects of my own design, including Tangible and a 
+                building-specific DBA, Starfall Residential Services. Alongside the app work, I spent this period on 
+                deliberate skill-building: a carpentry apprenticeship (interior framing, a tiny-house build, an earthen floor, two decks), 
+                three college courses, and weekly Spanish tutoring — now past thirty lessons with a native speaker.
               </p>
             </TimelineItem>
             <TimelineItem role="Senior Software Engineer" org="Storyblocks — Remote" period="2023 — 2024">
