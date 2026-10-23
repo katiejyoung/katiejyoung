@@ -45,6 +45,20 @@ function Samara({ size }) {
   );
 }
 
+function Semicolon({ size }) {
+  return (
+    <svg className="semicolon" width={size * 0.7} height={size} viewBox="0 0 14 24" aria-hidden="true" focusable="false">
+      {/* the dot — solid, unmistakable */}
+      <circle cx="7" cy="5.5" r="2.5" fill="var(--ink)" />
+      {/* the comma — drops down, then hooks left */}
+      <path
+        d="M8.7 12.2c.3 3.2-.9 5.6-3.4 7.1"
+        fill="none" stroke="var(--ink)" strokeWidth="2.6" strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 function Cow() {
   return (
     <svg className="cow" width="64" height="52" viewBox="0 0 64 52">
@@ -69,6 +83,7 @@ function Cow() {
 function Debris({ item }) {
   if (item.kind === "twig") return <Twig size={item.size} />;
   if (item.kind === "samara") return <Samara size={item.size} />;
+  if (item.kind === "semicolon") return <Semicolon size={item.size} />;
   return <Leaf size={item.size} tone={item.tone} />;
 }
 
@@ -90,28 +105,21 @@ function Debris({ item }) {
 
 /* THE TORNADO — now right-side, ~half the page tall (50vh–94vh).
    Radii shrink and speeds rise toward the ground, as physics demands. */
-const FUNNEL = [
-  { pos: { right: "8vw",    top: "50vh" }, size: 18, tone: "leaf--sage",   orbitD: "12s",  turn: 1,  r1: "-70px", r2: "-95px",  spinD: "4.2s", delay: "-2s", kind: "leaf" },
-  { pos: { right: "10vw",   top: "60vh" }, size: 15, tone: "leaf--deep",   orbitD: "10s",  turn: -1, r1: "-52px", r2: "-72px",  spinD: "3.8s", delay: "-6s", kind: "leaf" },
-  { pos: { right: "11vw",   top: "70vh" }, size: 13, tone: "leaf--accent", orbitD: "8s",   turn: 1,  r1: "-38px", r2: "-52px",  spinD: "3.5s", delay: "-4s", kind: "samara" },
-  { pos: { right: "11.5vw", top: "80vh" }, size: 11, tone: "leaf--sage",   orbitD: "6.5s", turn: -1, r1: "-26px", r2: "-36px",  spinD: "3.1s", delay: "-1s", kind: "twig" },
-  { pos: { right: "12vw",   top: "90vh" }, size: 10, tone: "leaf--deep",   orbitD: "5.5s", turn: 1,  r1: "-14px", r2: "-22px",  spinD: "2.8s", delay: "-3s", kind: "leaf" },
-];
+   const FUNNEL = [
+    { pos: { right: "8vw",    top: "50vh" }, size: 18, tone: "leaf--sage",   orbitD: "12s",  turn: 1,  r1: "-70px", r2: "-95px", spinD: "4.2s", delay: "-2s", kind: "leaf" },
+    { pos: { right: "10vw",   top: "60vh" }, size: 15, tone: "leaf--deep",   orbitD: "10s",  turn: -1, r1: "-52px", r2: "-72px", spinD: "3.8s", delay: "-6s", kind: "leaf" },
+    { pos: { right: "10.5vw", top: "65vh" }, size: 14, tone: "",             orbitD: "8.5s", turn: -1, r1: "-40px", r2: "-56px", spinD: "3.6s", delay: "-5s", kind: "semicolon" },
+    { pos: { right: "11vw",  top: "70vh" }, size: 13, tone: "leaf--accent", orbitD: "8s",   turn: 1,  r1: "-38px", r2: "-52px", spinD: "3.5s", delay: "-4s", kind: "samara" },
+    { pos: { right: "11.5vw", top: "80vh" }, size: 11, tone: "leaf--sage",   orbitD: "6.5s", turn: -1, r1: "-26px", r2: "-36px", spinD: "3.1s", delay: "-1s", kind: "twig" },
+    { pos: { right: "12vw",  top: "90vh" }, size: 10, tone: "leaf--deep",   orbitD: "5.5s", turn: 1,  r1: "-14px", r2: "-22px", spinD: "2.8s", delay: "-3s", kind: "leaf" },
+  ];
 
 const REDNECKERY = [
   "A funnel cloud is a tornado that's still in staging.",
   "Why did the developer get promoted during the storm? Performs well under pressure.",
-  "Why don't tornadoes use version control? They prefer to roll everything back themselves.",
-  "What is a flash flood's favorite git command? Git reset --hard",
-  "Why is debugging like storm chasing? You move toward what everyone else is avoiding.",
-  "Updated documentation on a legacy system is like a lightning strike: statistically possible, rarely witnessed.",
   "What do tornadoes and software have in common? Hopefully, nothing.",
-  "What did the raindrop say to the hailstone? You have too many hardcoded values.",
-  "Why did the engineer ignore the tornado warning? It was low priority - it only affected one region.",
   "Why don't tornadoes need local storage? They send everything to the cloud.",
   "What's a tornado's favorite Git command? git pull.",
-  "Tornado safety and database safety are identical: redundant systems, offsite backups, and never build your whole life on a single point of failure in Kansas.",
-  "What is lightning's favorite GitHub feature? The fork.",
 ];
 
 /* ---------------- The layer ---------------- */
