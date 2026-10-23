@@ -155,12 +155,18 @@
              flutter 9s ease-in-out infinite var(--delay, 0s);
 }
 
-/* Toast — pinned to the right edge, clear of the 44rem column */
+/* Toast — parked ABOVE the entire tornado (funnel spans ~50vh–94vh) */
 .cow-toast {
   position: fixed;
-  right: 1.5rem;
-  top: 40vh;
-  max-width: min(230px, 22vw);
+  /* Center horizontally on the funnel (at ~10vw from right) */
+  right: 10vw;
+  translate: 50% 0; /* shift right by half its width to center on the anchor */
+  
+  /* Funnel tops out at 50vh, cow apex around 56vh. 
+     Put toast way above at ~18vh for dramatic clearance */
+  top: 18vh;
+  
+  max-width: min(230px, 62vw);
   background: var(--paper);
   color: var(--ink);
   border: 1.5px solid var(--sage-deep);
@@ -174,16 +180,18 @@
   z-index: 10;
 }
 
+/* Arrow: pointing DOWN (toast sits above the tornado) */
 .cow-toast::before {
   content: "";
   position: absolute;
-  top: -9px;
-  left: 32px;
+  bottom: -9px;
+  left: 50%;
+  margin-left: -7px; /* half of width (14px) to truly center */
   width: 14px;
   height: 14px;
   background: var(--paper);
-  border-left: 1.5px solid var(--sage-deep);
-  border-top: 1.5px solid var(--sage-deep);
+  border-right: 1.5px solid var(--sage-deep);
+  border-bottom: 1.5px solid var(--sage-deep);
   transform: rotate(45deg);
 }
 
@@ -194,7 +202,7 @@
 
 .cow-stage {
   position: fixed;
-  pointer-events: none; /* only the button itself is interactive */
+  pointer-events: none;
   z-index: 0;
 }
 

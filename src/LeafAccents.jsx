@@ -89,30 +89,30 @@ function Debris({ item }) {
 
 /* Pressed-leaf mode: the site at rest. Two leaves, two more leaves,
    and one helicopter seed, museum placement, nothing moves. */
-   function StaticDecor() {
-    return (
-      <div className="static-decor" aria-hidden="true">
-        <Leaf size={24} tone="leaf--sage" />
-        <Leaf size={17} tone="leaf--deep" />
-        <Leaf size={20} tone="leaf--accent" />
-        <Samara size={16} />
-        <Leaf size={13} tone="leaf--sage" />
-      </div>
-    );
-  }
+function StaticDecor() {
+  return (
+    <div className="static-decor" aria-hidden="true">
+      <Leaf size={24} tone="leaf--sage" />
+      <Leaf size={17} tone="leaf--deep" />
+      <Leaf size={20} tone="leaf--accent" />
+      <Samara size={16} />
+      <Leaf size={13} tone="leaf--sage" />
+    </div>
+  );
+}
 
 /* ---------------- Configuration ---------------- */
 
 /* THE TORNADO — now right-side, ~half the page tall (50vh–94vh).
    Radii shrink and speeds rise toward the ground, as physics demands. */
-   const FUNNEL = [
-    { pos: { right: "8vw",    top: "50vh" }, size: 18, tone: "leaf--sage",   orbitD: "12s",  turn: 1,  r1: "-70px", r2: "-95px", spinD: "4.2s", delay: "-2s", kind: "leaf" },
-    { pos: { right: "10vw",   top: "60vh" }, size: 15, tone: "leaf--deep",   orbitD: "10s",  turn: -1, r1: "-52px", r2: "-72px", spinD: "3.8s", delay: "-6s", kind: "leaf" },
-    { pos: { right: "10.5vw", top: "65vh" }, size: 14, tone: "",             orbitD: "8.5s", turn: -1, r1: "-40px", r2: "-56px", spinD: "3.6s", delay: "-5s", kind: "semicolon" },
-    { pos: { right: "11vw",  top: "70vh" }, size: 13, tone: "leaf--accent", orbitD: "8s",   turn: 1,  r1: "-38px", r2: "-52px", spinD: "3.5s", delay: "-4s", kind: "samara" },
-    { pos: { right: "11.5vw", top: "80vh" }, size: 11, tone: "leaf--sage",   orbitD: "6.5s", turn: -1, r1: "-26px", r2: "-36px", spinD: "3.1s", delay: "-1s", kind: "twig" },
-    { pos: { right: "12vw",  top: "90vh" }, size: 10, tone: "leaf--deep",   orbitD: "5.5s", turn: 1,  r1: "-14px", r2: "-22px", spinD: "2.8s", delay: "-3s", kind: "leaf" },
-  ];
+const FUNNEL = [
+  { pos: { right: "8vw",    top: "50vh" }, size: 18, tone: "leaf--sage",   orbitD: "12s",  turn: 1,  r1: "-70px", r2: "-95px", spinD: "4.2s", delay: "-2s", kind: "leaf" },
+  { pos: { right: "10vw",   top: "60vh" }, size: 15, tone: "leaf--deep",   orbitD: "10s",  turn: -1, r1: "-52px", r2: "-72px", spinD: "3.8s", delay: "-6s", kind: "leaf" },
+  { pos: { right: "10.5vw", top: "65vh" }, size: 14, tone: "",             orbitD: "8.5s", turn: -1, r1: "-40px", r2: "-56px", spinD: "3.6s", delay: "-5s", kind: "semicolon" },
+  { pos: { right: "11vw",  top: "70vh" }, size: 13, tone: "leaf--accent", orbitD: "8s",   turn: 1,  r1: "-38px", r2: "-52px", spinD: "3.5s", delay: "-4s", kind: "samara" },
+  { pos: { right: "11.5vw", top: "80vh" }, size: 11, tone: "leaf--sage",   orbitD: "6.5s", turn: -1, r1: "-26px", r2: "-36px", spinD: "3.1s", delay: "-1s", kind: "twig" },
+  { pos: { right: "12vw",  top: "90vh" }, size: 10, tone: "leaf--deep",   orbitD: "5.5s", turn: 1,  r1: "-14px", r2: "-22px", spinD: "2.8s", delay: "-3s", kind: "leaf" },
+];
 
 const REDNECKERY = [
   "A funnel cloud is a tornado that's still in staging.",
@@ -132,13 +132,71 @@ export default function LeafAccents() {
     return saved === "on"; // default: OFF
   });
   const mooTimer = useRef(null);
+  const rafRef = useRef(null);
   const toastRef = useRef(null);
   const cowBtnRef = useRef(null);
 
-  useEffect(() => () => clearTimeout(mooTimer.current), []);
+  useEffect(
+    () => () => {
+      clearTimeout(mooTimer.current);
+      cancelAnimationFrame(rafRef.current);
+    },
+    []
+  );
 
   useEffect(() => {
     localStorage.setItem("weather-anim", animate ? "on" : "off");
+  }, [animate]);
+
+  /* Tooltip chases the flying cow. Every frame we read where the cow
+     button actually is on screen (post-orbit, post-spiral) and park the
+     speech bubble just below her, flipping above when she nears the
+     ground. A fixed gap means it trails her trajectory without ever
+     landing on top of her. */
+  useEffect(() => {
+    if (!cowTalk || !animate) return;
+
+    const GAP = 14; // airspace kept between cow and bubble at all times
+    const EDGE = 12; // viewport padding
+
+    const tick = () => {
+      const cow = cowBtnRef.current;
+      const toast = toastRef.current;
+      if (cow && toast) {
+        const c = cow.getBoundingClientRect();
+        const w = toast.offsetWidth;
+        const h = toast.offsetHeight;
+
+        // hang below, horizontally centred on the cow
+        let top = c.bottom + GAP;
+
+        if (top + h > window.innerHeight - EDGE) {
+          top = c.top - h - GAP;
+          toast.dataset.side = "above";
+        } else {
+          toast.dataset.side = "below";
+        }
+
+        toast.style.left = `${Math.round(left)}px`;
+        toast.style.top = `${Math.round(top)}px`;
+        // keep it clamped into the viewport (it can drift left of the funnel)
+        let left = c.left + c.width / 2 - w / 2;
+        left = Math.min(Math.max(left, EDGE), window.innerWidth - w - EDGE);
+        top = Math.max(top, EDGE);
+
+        toast.style.left = `${Math.round(left)}px`;
+        toast.style.top = `${Math.round(top)}px`;
+      }
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [cowTalk, animate]);
+
+  /* switching to production mid-joke shouldn't leave a ghost bubble */
+  useEffect(() => {
+    if (!animate) setCowTalk(false);
   }, [animate]);
 
   /* Escape key AND click-outside, both while the toast is open */
@@ -254,7 +312,7 @@ export default function LeafAccents() {
           onClick={() => setAnimate(true)}
           aria-pressed={animate}
         >
-          local
+          development
         </button>
       </div>
     </>
