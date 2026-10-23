@@ -112,7 +112,7 @@ export default function App() {
           <details>
           <summary>Earlier chapters (DevSecOps @ BridgePhase, Engineering Intern @ Dell RSA, B.A. English @ Georgetown, B.S. CS @ Oregon State)</summary>
           <p>
-            Education: B.A. in English at Georgetow University, then a B.S. in Computer Science
+            Education: B.A. in English at Georgetown University, then a B.S. in Computer Science
             at Oregon State University.
           </p>
           <p>
